@@ -57,7 +57,7 @@ use rocket::{
 use juniper::{http, InputValue};
 
 use juniper::{
-    serde::Deserialize, DefaultScalarValue, FieldError, GraphQLType, RootNode, ScalarRefValue,
+    serde::Deserialize, DefaultScalarValue, FieldError, GraphQLType, RootNode,
     ScalarValue,
 };
 
@@ -85,7 +85,6 @@ where
 impl<S> GraphQLBatchRequest<S>
 where
     S: ScalarValue,
-    for<'b> &'b S: ScalarRefValue<'b>,
 {
     pub fn execute<'a, CtxT, QueryT, MutationT>(
         &'a self,
@@ -161,7 +160,6 @@ pub fn playground_source(graphql_endpoint_url: &str) -> content::Html<String> {
 impl<S> GraphQLRequest<S>
 where
     S: ScalarValue,
-    for<'b> &'b S: ScalarRefValue<'b>,
 {
     /// Execute an incoming GraphQL query
     pub fn execute<CtxT, QueryT, MutationT>(
